@@ -50,9 +50,10 @@ export class AppComponent {
   title = 'rifa';
   names = <any>[];
   state = 'hide';
-  nameToshow = '';
+  nameToShow = '';
   phone = '';
   showPhone = false;
+  count = 0;
 
   async uploadNames() {
     var inputFile = document.createElement('input');
@@ -71,6 +72,9 @@ export class AppComponent {
     var reader = new FileReader();
     reader.onload = function () {
       aux_this.names = [];
+      aux_this.state = 'hide';
+      aux_this.nameToShow = '';
+      aux_this.phone = '';
       let results1 = (<String>reader.result).split('\n');
       results1.splice(0, 1);
       for (let result of <any>results1) {
@@ -82,21 +86,24 @@ export class AppComponent {
   }
 
   async begin() {
-    let i = 1;
+    this.count = 11;
+    let i = 10;
     let randomElement;
-    while (i <= 10) {
+    while (i > 0) {
       this.state = 'out';
       await this.sleep(500);
       randomElement = this.names[Math.floor(Math.random() * this.names.length)];
-      this.nameToshow = randomElement.name;
+      this.nameToShow = randomElement.name;
       this.state = 'in';
+      this.count -= 1;
+      i -= 1;
       await this.sleep(500);
-      i = i + 1;
     }
     this.state = 'out';
     await this.sleep(500);
+    this.count -= 1;
     randomElement = this.names[Math.floor(Math.random() * this.names.length)];
-    this.nameToshow = randomElement.name;
+    this.nameToShow = randomElement.name;
     this.phone = randomElement.phone;
     this.state = 'ready';
   }

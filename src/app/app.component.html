@@ -19,8 +19,9 @@
       margin-bottom: 30px;
     "
   >
-    <h1 [@enabledStateChange]="state">{{ nameToshow }}</h1>
+    <h1 [@enabledStateChange]="state">{{ nameToShow }}</h1>
   </div>
+
   <div style="display: flex; justify-content: center; align-items: center">
     <button
       type="button"
@@ -35,8 +36,9 @@
       type="button"
       class="btn btn-success"
       (click)="begin()"
+      [ngStyle]="{ color: count > 0 && count < 4 ? 'red' : 'white' }"
     >
-      Rifar
+      {{ count == 0 || count == 11 ? "Rifar" : count }}
     </button>
   </div>
 
