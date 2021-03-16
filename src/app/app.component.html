@@ -32,7 +32,7 @@
       Cargar nombres
     </button>
     <button
-      [disabled]="names.length == 0"
+      [disabled]="names.length == 0 || state == 'in' || state == 'out'"
       type="button"
       class="btn btn-success"
       (click)="begin()"
