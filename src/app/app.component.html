@@ -1,0 +1,53 @@
+<div
+  style="
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  "
+>
+  <h1 style="margin-top: 20px">¡Rifa!</h1>
+  <div
+    style="
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 50vw;
+      height: 20vh;
+      border: solid black 1px;
+      margin-bottom: 30px;
+    "
+  >
+    <h1 [@enabledStateChange]="state">{{ nameToshow }}</h1>
+  </div>
+  <div style="display: flex; justify-content: center; align-items: center">
+    <button
+      type="button"
+      class="btn btn-primary"
+      style="margin-right: 20px"
+      (click)="uploadNames()"
+    >
+      Cargar nombres
+    </button>
+    <button
+      [disabled]="names.length == 0"
+      type="button"
+      class="btn btn-success"
+      (click)="begin()"
+    >
+      Rifar
+    </button>
+  </div>
+
+  <button
+    [disabled]="state != 'ready'"
+    type="button"
+    class="btn btn-info"
+    (click)="showPhone = !showPhone"
+    style="margin-top: 10px"
+  >
+    {{ showPhone ? "Ocultar Teléfono" : "Mostrar Teléfono" }}
+  </button>
+  <h1 [hidden]="!showPhone" style="margin-top: 10px">{{ phone }}</h1>
+</div>
