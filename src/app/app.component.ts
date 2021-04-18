@@ -81,6 +81,7 @@ export class AppComponent {
         let r = result.split(';');
         aux_this.names.push({ name: r[0], phone: r[1] });
       }
+      console.log(aux_this.names);
     };
     reader.readAsText(files[0]);
   }
